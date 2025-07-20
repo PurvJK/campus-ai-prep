@@ -2,41 +2,75 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Campus AI Prep Design System - Professional educational platform colors */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Main Background & Text */
+    --background: 220 18% 97%;
+    --foreground: 215 28% 17%;
 
+    /* Card Components */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 215 28% 17%;
 
+    /* Popover Components */
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 215 28% 17%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary - Professional Blue */
+    --primary: 210 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --primary-muted: 210 100% 95%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary - Teal Accent */
+    --secondary: 180 100% 25%;
+    --secondary-foreground: 0 0% 100%;
+    --secondary-muted: 180 100% 95%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Success - Learning Green */
+    --success: 145 63% 42%;
+    --success-foreground: 0 0% 100%;
+    --success-muted: 145 63% 95%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Warning - Attention Orange */
+    --warning: 35 91% 62%;
+    --warning-foreground: 0 0% 100%;
+    --warning-muted: 35 91% 95%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Muted Elements */
+    --muted: 210 20% 94%;
+    --muted-foreground: 215 16% 47%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Accent Colors */
+    --accent: 210 40% 96%;
+    --accent-foreground: 215 28% 17%;
 
-    --radius: 0.5rem;
+    /* Destructive */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Borders & Inputs */
+    --border: 210 20% 89%;
+    --input: 210 20% 89%;
+    --ring: 210 100% 50%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(210, 100%, 50%), hsl(195, 100%, 50%));
+    --gradient-secondary: linear-gradient(135deg, hsl(180, 100%, 25%), hsl(165, 100%, 35%));
+    --gradient-hero: linear-gradient(135deg, hsl(210, 100%, 50%) 0%, hsl(195, 100%, 50%) 50%, hsl(180, 100%, 45%) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(220, 18%, 97%), hsl(210, 20%, 94%));
+
+    /* Shadows */
+    --shadow-soft: 0 4px 6px -1px hsl(210, 100%, 50% / 0.1), 0 2px 4px -1px hsl(210, 100%, 50% / 0.06);
+    --shadow-medium: 0 10px 15px -3px hsl(210, 100%, 50% / 0.1), 0 4px 6px -2px hsl(210, 100%, 50% / 0.05);
+    --shadow-large: 0 25px 50px -12px hsl(210, 100%, 50% / 0.25);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +134,95 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+@layer components {
+  /* Button Variants */
+  .btn-hero {
+    @apply bg-gradient-to-r from-primary to-secondary text-white font-semibold px-8 py-4 rounded-xl;
+    @apply hover:scale-105 active:scale-95 transition-all duration-300;
+    @apply shadow-lg hover:shadow-xl;
+  }
+
+  .btn-ghost {
+    @apply bg-white/10 backdrop-blur-sm border border-white/20 text-primary;
+    @apply hover:bg-white/20 transition-all duration-300;
+  }
+
+  /* Card Variants */
+  .card-elevated {
+    @apply bg-card border border-border rounded-2xl;
+    box-shadow: var(--shadow-soft);
+    @apply hover:shadow-md transition-all duration-300;
+  }
+
+  .card-feature {
+    @apply bg-gradient-to-br from-card to-muted/30 border border-border rounded-2xl p-6;
+    @apply hover:scale-105 transition-all duration-300;
+    box-shadow: var(--shadow-soft);
+  }
+
+  /* Background Patterns */
+  .bg-hero {
+    background: var(--gradient-hero);
+  }
+
+  .bg-subtle {
+    background: var(--gradient-subtle);
+  }
+
+  /* Animation Classes */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+}
+
+@layer utilities {
+  /* Custom Shadows */
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+
+  .shadow-medium {
+    box-shadow: var(--shadow-medium);
+  }
+
+  .shadow-large {
+    box-shadow: var(--shadow-large);
+  }
+
+  /* Transition Utilities */
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+
+  .transition-bounce {
+    transition: var(--transition-bounce);
+  }
+}
+
+/* Keyframe Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 20px hsl(210, 100%, 50% / 0.2);
+  }
+  to {
+    box-shadow: 0 0 30px hsl(210, 100%, 50% / 0.4);
   }
 }
